@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="./jquery.js"></script>
+  <meta charset="utf-8">
+  <title>瀑布流布局</title>
+</head>
+  <style>
+  .waterfall{
+    margin: 0 auto;
+  }
+  .waterfall img{
+    width:200px;
+    position: absolute;
+    margin:10px;
+  }
+  
+  
+  </style>
+<body>
+<div class="waterfall">
+  <img src="https://picsum.photos/id/50/200/100">
+  <img src="https://picsum.photos/id/52/200/120">
+  <img src="https://picsum.photos/id/53/200/300">
+  <img src="https://picsum.photos/id/54/200/100">
+  <img src="https://picsum.photos/id/55/200/150">
+  <img src="https://picsum.photos/id/56/200/230">
+  <img src="https://picsum.photos/id/57/200/250">
+  <img src="https://picsum.photos/id/58/200/130">
+  <img src="https://picsum.photos/id/59/200/150">
+  <img src="https://picsum.photos/id/60/200/123">
+  <img src="https://picsum.photos/id/61/200/234">
+  <img src="https://picsum.photos/id/62/200/300">
+  <img src="https://picsum.photos/id/63/200/100">
+  <img src="https://picsum.photos/id/64/200/200">
+  <img src="https://picsum.photos/id/65/200/120">
+  <img src="https://picsum.photos/id/66/200/230">
+  <img src="https://picsum.photos/id/67/200/150">
+  <img src="https://picsum.photos/id/68/200/300">
+  <img src="https://picsum.photos/id/69/200/123">
+  <img src="https://picsum.photos/id/70/200/300">
+  <img src="https://picsum.photos/id/71/200/150">
+  <img src="https://picsum.photos/id/72/200/234">
+  <img src="https://picsum.photos/id/73/200/100">
+  <img src="https://picsum.photos/id/74/200/150">
+  <img src="https://picsum.photos/id/75/200/234">
+  <img src="https://picsum.photos/id/76/200/100">
+  <img src="https://picsum.photos/id/77/200/150">
+  <img src="https://picsum.photos/id/78/200/234">
+  <img src="https://picsum.photos/id/79/200/100">
+  <img src="https://picsum.photos/id/80/200/150">
+  <img src="https://picsum.photos/id/81/200/234">
+  <img src="https://picsum.photos/id/82/200/100">
+  <img src="https://picsum.photos/id/83/200/100">
+  <img src="https://picsum.photos/id/84/200/150">
+  <img src="https://picsum.photos/id/85/200/234">
+  <img src="https://picsum.photos/id/87/200/100">
+  <img src="https://picsum.photos/id/88/200/120">
+  <img src="https://picsum.photos/id/89/200/300">
+  <img src="https://picsum.photos/id/90/200/100">
+  <img src="https://picsum.photos/id/91/200/150">
+  <img src="https://picsum.photos/id/92/200/230">
+  <img src="https://picsum.photos/id/93/200/250">
+</div>
+</body>
+  <script>
+     var colCount
+     var colHeightArray = [] 
+     var imgWidth = $('.waterfall img').outerWidth(true)
+     
+   colCount = Math.floor(($('.waterfall').width()/imgWidth))
+   for (var i=0; i<colCount;i++){
+     colHeightArray[i] = 0
+   }
+    
+    $('.waterfall img').on('load',function(){
+      var minValue = colHeightArray[0]
+      var minIndex = 0
+      for (var i=0;i<colCount;i++){
+        if(colHeightArray[i]<minValue){
+          minValue = colHeightArray[i]
+          minIndex = i
+        }
+      }
+      $(this).css({
+        left: minIndex * imgWidth,
+        top: minValue
+      })
+      colHeightArray[minIndex] += $(this).outerHeight(true)
+    })
+    
+
+    
+    
+    
+    
+  </script>
+</html>
